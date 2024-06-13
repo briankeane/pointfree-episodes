@@ -69,27 +69,27 @@ public func >=><A, B, C>(
   }
 
 2
-  |> computeAndPrint 
-  >=> computeAndPrint
-  >=> computeAndPrint
+|> computeAndPrint
+>=> computeAndPrint
+>=> computeAndPrint
 
 2
-  |> computeAndPrint
-  >=> incr
-  >>> computeAndPrint
-  >=> square >>> computeAndPrint
-
-public func >=><A, B, C>(
-  _ f: @escaping (A) -> B?,
-  _ g: @escaping (B) -> C?
-) -> (A) -> C? {
-  return { a in
-    if let firstResult = f(a) {
-      return g(firstResult)
-    }
-    return nil
-  }
-}
+|> computeAndPrint
+>=> incr
+>>> computeAndPrint
+>=> square >>> computeAndPrint
+//
+//public func >=><A, B, C>(
+//  _ f: @escaping (A) -> B?,
+//  _ g: @escaping (B) -> C?
+//) -> (A) -> C? {
+//  return { a in
+//    if let firstResult = f(a) {
+//      return g(firstResult)
+//    }
+//    return nil
+//  }
+//}
 
 func greetWithEffect(_ name: String) -> String {
   let seconds = Int(Date().timeIntervalSince1970) % 60
@@ -240,34 +240,34 @@ func fromInOut<A>(_ f: @escaping (inout A) -> Void) -> (A) -> A {
   }
 }
 
-precedencegroup SingleTypeComposition {
-  associativity: left
-  higherThan: ForwardApplication
-}
+//precedencegroup SingleTypeComposition {
+//  associativity: left
+//  higherThan: ForwardApplication
+//}
+//
+//infix operator <>: SingleTypeComposition
 
-infix operator <>: SingleTypeComposition
-
-public func <> <A>(
-  f: @escaping (A) -> A,
-  g: @escaping(A) -> A) -> (A) -> A {
-  return f >>> g
-}
-
-public func <> <A>(
-  f: @escaping (inout A) -> Void, 
-  g: @escaping (inout A) -> Void) -> (inout A) -> Void {
-  return { a in
-    f(&a)
-    g(&a)
-  }
-}
+//public func <> <A>(
+//  f: @escaping (A) -> A,
+//  g: @escaping(A) -> A) -> (A) -> A {
+//    return f >>> g
+//  }
+//
+//public func <> <A>(
+//  f: @escaping (inout A) -> Void,
+//  g: @escaping (inout A) -> Void) -> (inout A) -> Void {
+//    return { a in
+//      f(&a)
+//      g(&a)
+//    }
+//  }
 
 decimalStyle <> currencyStyle
 inoutDecimalStyle <> inoutCurrencyStyle
 
 config |> decimalStyle <> currencyStyle
 
-func |> <A>(a: inout A, f: (inout A) -> Void) -> Void {
+public func |> <A>(a: inout A, f: (inout A) -> Void) -> Void {
   f(&a)
 }
 config |> inoutDecimalStyle <> inoutCurrencyStyle

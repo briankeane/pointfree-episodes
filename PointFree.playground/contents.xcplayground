@@ -3,5 +3,8 @@
     <pages>
         <page name='Episode 1 - Functions'/>
         <page name='Episode 2 - Side Effects'/>
+        <page name='Episode 3 - UIKit Styling with Functions'/>
+        <page name='Episode 4 - Algebra'/>
+        <page name='Episode 5  - Higher Order Functions'/>
     </pages>
 </playground>
