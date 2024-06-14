@@ -97,7 +97,7 @@ func map<A, B>(_ f: @escaping (A) -> B) -> ([A]) -> [B] {
 (42, ["Swift", "Objective-C"])
 |> (second <<< map) { $0 + "!" }
 
-[42, ["Swift", "Objective-C"]),
+[(42, ["Swift", "Objective-C"]),
   (1729, ["Haskell", "Purescript"])]
 |> (map <<< second <<< map) { $0 + "!" }
 
